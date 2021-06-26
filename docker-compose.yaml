@@ -6,7 +6,7 @@ services:
     ports:
       - "5008:5008"
     volumes:
-      - .:/usr/feed
+      - ./feed:/usr/feed
       - /usr/feed/node_modules
     depends_on:
       - redis
@@ -16,7 +16,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/usr/feed-web
+      - ./feed-web:/usr/feed-web
       - /usr/feed-web/node_modules
     depends_on:
       - feed
