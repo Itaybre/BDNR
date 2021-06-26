@@ -1,0 +1,24 @@
+version: "3.9" # optional since v1.27.0
+services:
+  feed:
+    build: ./feed
+    command: npm start
+    ports:
+      - "5008:5008"
+    volumes:
+      - .:/usr/feed
+      - /usr/feed/node_modules
+    depends_on:
+      - redis
+  feed-ui:
+    build: ./feed-ui
+    command: npm start
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/feed-ui
+      - /usr/feed-ui/node_modules
+    depends_on:
+      - feed
+  redis:
+    image: redis
