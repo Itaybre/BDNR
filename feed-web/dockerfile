@@ -1,0 +1,7 @@
+FROM node:12-alpine
+
+WORKDIR /usr/feed-web
+COPY package.json .
+COPY yarn.lock .
+RUN yarn install
+COPY . .

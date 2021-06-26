@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PrivateRoute /> should render without crashing 1`] = `
+<DocumentFragment>
+  <h1>
+    Hello
+  </h1>
+</DocumentFragment>
+`;

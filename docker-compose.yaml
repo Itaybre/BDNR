@@ -11,13 +11,13 @@ services:
     depends_on:
       - redis
   feed-ui:
-    build: ./feed-ui
+    build: ./feed-web
     command: npm start
     ports:
       - "3000:3000"
     volumes:
-      - .:/usr/feed-ui
-      - /usr/feed-ui/node_modules
+      - .:/usr/feed-web
+      - /usr/feed-web/node_modules
     depends_on:
       - feed
   redis:

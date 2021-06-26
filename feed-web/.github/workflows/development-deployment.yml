@@ -1,0 +1,30 @@
+# This workflow will be triggered every time someone pushes to development.
+# It will build, lint and test both the frontend and backend projects.
+# If all the previous steps are successful the project will be deployed to Firebase.
+
+name: Development Deployment
+
+on:
+  push:
+    branches: [development]
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Build
+        run: yarn build:ci
+      - name: Test
+        run: yarn test:ci
+      - name: Lint
+        run: yarn lint:ci
+      - name: Format
+        run: yarn format:ci

@@ -1,0 +1,86 @@
+# This workflow will be triggered every time someone pushes to staging.
+# It will build, lint and test both the frontend and backend projects.
+# If all the previous steps are successful the project will be deployed to Firebase.
+
+name: Staging Deployment
+
+on:
+  push:
+    branches: [staging]
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      REACT_APP_FIRE_BASE_KEY: ${{ secrets.FIRE_BASE_KEY_STAGING }}
+      REACT_APP_FIRE_BASE_AUTH_DOMAIN: ${{ secrets.FIRE_BASE_AUTH_DOMAIN_STAGING }}
+      REACT_APP_FIRE_BASE_DB_URL: ${{ secrets.FIRE_BASE_DB_URL_STAGING }}
+      REACT_APP_FIRE_BASE_PROJECT_ID: ${{ secrets.FIRE_BASE_PROJECT_ID_STAGING }}
+      REACT_APP_FIRE_BASE_STORAGE_BUCKET: ${{ secrets.FIRE_BASE_STORAGE_BUCKET_STAGING }}
+      REACT_APP_FIRE_BASE_MESSAGING_SENDER_ID: ${{ secrets.FIRE_BASE_MESSAGING_SENDER_ID_STAGING }}
+      REACT_APP_FIRE_BASE_APP_ID: ${{ secrets.FIRE_BASE_APP_ID_STAGING }}
+      REACT_APP_FIRE_BASE_MEASURMENT_ID: ${{ secrets.FIRE_BASE_MEASURMENT_ID_STAGING }}
+      REACT_APP_LOGIN_PAGE_URL: ${{ secrets.LOGIN_PAGE_URL_STAGING }}
+      REACT_APP_DASHBOARD_LOGIN_PAGE_URL: ${{ secrets.DASHBOARD_LOGIN_PAGE_URL_STAGING }}
+      REACT_APP_FIRE_BASE_STORAGE_API: 'https://firebasestorage.googleapis.com/v0/b/${{ secrets.FIRE_BASE_STORAGE_BUCKET_STAGING }}'
+      REACT_APP_ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+      REACT_APP_ALGOLIA_ADMIN_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
+      REACT_APP_ALGOLIA_TAGS_INDEX: ${{ secrets.ALGOLIA_TAGS_INDEX_STAGING }}
+      REACT_APP_ALGOLIA_TAGS_CREATED_AT_ASC_INDEX: ${{ secrets.ALGOLIA_TAGS_CREATED_AT_ASC_INDEX_STAGING }}
+      REACT_APP_ALGOLIA_TAGS_CREATED_AT_DESC_INDEX: ${{ secrets.ALGOLIA_TAGS_CREATED_AT_DESC_INDEX_STAGING }}
+      REACT_APP_ALGOLIA_DATA_SETS_INDEX: ${{ secrets.ALGOLIA_DATA_SETS_INDEX_STAGING }}
+      REACT_APP_ALGOLIA_DATA_SETS_TAG_DISPLAY_NAME_ASC_INDEX: ${{ secrets.ALGOLIA_DATA_SETS_TAG_DISPLAY_NAME_ASC_INDEX_STAGING }}
+      REACT_APP_ALGOLIA_DATA_SETS_TAG_DISPLAY_NAME_DESC_INDEX: ${{ secrets.ALGOLIA_DATA_SETS_TAG_DISPLAY_NAME_DESC_INDEX_STAGING }}
+      REACT_APP_ALGOLIA_DATA_SETS_CREATED_AT_ASC_INDEX: ${{ secrets.ALGOLIA_DATA_SETS_CREATED_AT_ASC_INDEX_STAGING }}
+      REACT_APP_ALGOLIA_DATA_SETS_CREATED_AT_DESC_INDEX: ${{ secrets.ALGOLIA_DATA_SETS_CREATED_AT_DESC_INDEX_STAGING }}
+      REACT_APP_ALGOLIA_USERS_INDEX: ${{ secrets.ALGOLIA_USERS_INDEX_STAGING }}
+      REACT_APP_ALGOLIA_USERS_CREATED_AT_ASC_INDEX: ${{ secrets.ALGOLIA_USERS_CREATED_AT_ASC_INDEX_STAGING }}
+      REACT_APP_ALGOLIA_USERS_CREATED_AT_DESC_INDEX: ${{ secrets.ALGOLIA_USERS_CREATED_AT_DESC_INDEX_STAGING }}
+      REACT_APP_ALGOLIA_SURVEYS_INDEX: ${{ secrets.ALGOLIA_SURVEYS_INDEX_STAGING }}
+      REACT_APP_ALGOLIA_SURVEYS_CREATED_AT_ASC_INDEX: ${{ secrets.ALGOLIA_SURVEYS_CREATED_AT_ASC_INDEX_STAGING }}
+      REACT_APP_ALGOLIA_SURVEYS_CREATED_AT_DESC_INDEX: ${{ secrets.ALGOLIA_SURVEYS_CREATED_AT_DESC_INDEX_STAGING }}
+      REACT_APP_ALGOLIA_SURVEYS_TITLE_ASC_INDEX: ${{ secrets.ALGOLIA_SURVEYS_TITLE_ASC_INDEX_STAGING  }}
+      REACT_APP_ALGOLIA_SURVEYS_TITLE_DESC_INDEX: ${{ secrets.ALGOLIA_SURVEYS_TITLE_DESC_INDEX_STAGING }}
+      REACT_APP_ALGOLIA_WAVES_INDEX: ${{ secrets.ALGOLIA_WAVES_INDEX_STAGING }}
+      REACT_APP_ALGOLIA_WAVES_WAVE_INDEX_ASC_INDEX: ${{ secrets.ALGOLIA_WAVES_WAVE_INDEX_ASC_INDEX_STAGING }}
+      REACT_APP_ALGOLIA_WAVES_WAVE_INDEX_DESC_INDEX: ${{ secrets.ALGOLIA_WAVES_WAVE_INDEX_DESC_INDEX_STAGING }}
+      REACT_APP_ALGOLIA_GROUPS_INDEX: ${{ secrets.ALGOLIA_GROUPS_INDEX_STAGING }}
+      REACT_APP_DASHBOARD_WAVE_PREVIEW_URL: ${{ secrets.DASHBOARD_WAVE_PREVIEW_URL_STAGING }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js environment (backend)
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: '10.x'
+      - name: Install dependencies (backend)
+        run: yarn install --frozen-lockfile
+        working-directory: functions
+      - name: Lint (backend)
+        run: yarn lint:ci
+        working-directory: functions
+      - name: Test (backend)
+        run: npm install -g firebase-tools && yarn test:ci
+        working-directory: functions
+      - name: Build (backend)
+        run: yarn build:ci
+        working-directory: functions
+      - name: Setup Node.js environment (frontend)
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12.x'
+      - name: Install dependencies (frontend)
+        run: yarn install --frozen-lockfile
+      - name: Lint (frontend)
+        run: yarn lint:ci
+      - name: Test (frontend)
+        run: yarn test:ci
+      - name: Build (frontend)
+        run: yarn build:ci
+      - name: Firebase deployment
+        run: |
+          npm install -g firebase-tools
+          firebase deploy -P staging --token $FIREBASE_TOKEN
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIRE_BASE_CI_TOKEN }}
