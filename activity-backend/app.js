@@ -1,6 +1,8 @@
-const express = require ('express');
-const routes = require('./router'); 
-const controller = require('./controller')
+const express = require("express");
+const config = require("config");
+
+const routes = require("./router");
+const controller = require("./controller");
 
 const app = express();
 
@@ -8,8 +10,10 @@ app.use(express.json());
 
 controller.connect();
 
-app.use('/', routes); 
+app.use("/", routes);
 
-const listener = app.listen(process.env.PORT || 3000, () => {
-    console.log('Your app is listening on port ' + listener.address().port)
-})
+const port = config.has("port") ? config.get("port") : 5000;
+
+const listener = app.listen(port, () => {
+  console.log("Your app is listening on port " + listener.address().port);
+});

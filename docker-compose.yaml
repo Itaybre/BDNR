@@ -1,5 +1,19 @@
 version: "3.9" # optional since v1.27.0
 services:
+  activity-backend:
+    container_name: activity-backend
+    build: ./activity-backend
+    volumes:
+      - "./:/activity-backend"
+      - "/activity-backend/node_modules"
+    ports:
+      - 5000:5000
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: npm start
+    depends_on:
+      - cassandra
   feed-backend:
     container_name: feed-backend
     build: ./feed-backend
@@ -30,3 +44,7 @@ services:
       - feed-backend
   redis:
     image: redis
+  cassandra:
+    image: cassandra
+    ports:
+      - 9042:9042

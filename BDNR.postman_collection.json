@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c05b8645-e83c-4ac5-9d7f-bfad8142316e",
+		"_postman_id": "9b53ddfc-cc3c-486b-887e-dabfd2184ac7",
 		"name": "BDNR",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -121,12 +121,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/activity",
+							"raw": "http://localhost:5000/activity",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "5000",
 							"path": [
 								"activity"
 							]
@@ -149,12 +149,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/reaction",
+							"raw": "http://localhost:5000/reaction",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "5000",
 							"path": [
 								"reaction"
 							]
@@ -177,12 +177,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/sensor",
+							"raw": "http://localhost:5000/sensor",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "5000",
 							"path": [
 								"sensor"
 							]
@@ -214,12 +214,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/activities/type?userId=c4da2d2e-422f-4b4f-9b6d-e44abb213c5c&type=photo",
+							"raw": "http://localhost:5000/activities/type?userId=c4da2d2e-422f-4b4f-9b6d-e44abb213c5c&type=photo",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "5000",
 							"path": [
 								"activities",
 								"type"
@@ -244,12 +244,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/activities?userId=c4da2d2e-422f-4b4f-9b6d-e44abb213c5c",
+							"raw": "http://localhost:5000/activities?userId=c4da2d2e-422f-4b4f-9b6d-e44abb213c5c",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "5000",
 							"path": [
 								"activities"
 							],
@@ -269,12 +269,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/sensor?activityId=763d9c77-d0ad-40d2-ad7d-23ea35fb98ed",
+							"raw": "http://localhost:5000/sensor?activityId=763d9c77-d0ad-40d2-ad7d-23ea35fb98ed",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "5000",
 							"path": [
 								"sensor"
 							],
@@ -294,12 +294,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/reaction?activityId=763d9c77-d0ad-40d2-ad7d-23ea35fb98ed",
+							"raw": "http://localhost:5000/reaction?activityId=763d9c77-d0ad-40d2-ad7d-23ea35fb98ed",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "5000",
 							"path": [
 								"reaction"
 							],
