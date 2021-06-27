@@ -7,7 +7,6 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+RUN chmod +x /usr/src/activity-backend/wait-for-it.sh
 
 EXPOSE 5000
-
-CMD [ "npm", "start" ]
