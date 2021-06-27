@@ -1,102 +1,319 @@
 {
 	"info": {
-		"_postman_id": "3fd7e2bd-dc83-4f6a-a899-c391443a2377",
+		"_postman_id": "c05b8645-e83c-4ac5-9d7f-bfad8142316e",
 		"name": "BDNR",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Get Feed",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:5008/feeds/1",
-					"host": [
-						"localhost"
-					],
-					"port": "5008",
-					"path": [
-						"feeds",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create feed",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"userId\": \"3\",\n    \"activities\": [\n        {\n            \"activityId\": \"1\",\n            \"title\": \"Salida en bici por la mañana\",\n            \"userName\": \"Mateo Kruk\",\n            \"userLogo\": \"https://ca.slack-edge.com/TAJT09G57-UP1A7QSPR-7311acb381c4-512\",\n            \"date\": \"12/06/2021\",\n            \"activityType\": \"run\",\n            \"imageUrl\": \"https://d3o5xota0a1fcr.cloudfront.net/v6/maps/WQXZXCZEKL7SZVFPCME72NT7VX3GGCEB6ZBW5WV5K2EXPSBDXURSXX7XWFLFHSZA6IDXNBRNR6MFHSZOFKPPDDV7OEC5D2GE\",\n            \"comment\": \"Alta salida con amigos\"\n        }\n    ]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "FEED",
+			"item": [
+				{
+					"name": "Get Feed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5008/feeds/1",
+							"host": [
+								"localhost"
+							],
+							"port": "5008",
+							"path": [
+								"feeds",
+								"1"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:5008/feeds",
-					"host": [
-						"localhost"
-					],
-					"port": "5008",
-					"path": [
-						"feeds"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update feed",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"activities\": [\n        {\n            \"activityId\": \"5\",\n            \"date\": \"20/06/2021\",\n            \"type\": \"run\"\n        }, {\n            \"activityId\": \"2\",\n            \"date\": \"12/06/2021\",\n            \"type\": \"run\"\n        }, {\n            \"activityId\": \"1\",\n            \"date\": \"10/06/2021\",\n            \"type\": \"swim\"\n        }\n    ]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Create feed",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"3\",\n    \"activities\": [\n        {\n            \"activityId\": \"1\",\n            \"title\": \"Salida en bici por la mañana\",\n            \"userName\": \"Mateo Kruk\",\n            \"userLogo\": \"https://ca.slack-edge.com/TAJT09G57-UP1A7QSPR-7311acb381c4-512\",\n            \"date\": \"12/06/2021\",\n            \"activityType\": \"run\",\n            \"imageUrl\": \"https://d3o5xota0a1fcr.cloudfront.net/v6/maps/WQXZXCZEKL7SZVFPCME72NT7VX3GGCEB6ZBW5WV5K2EXPSBDXURSXX7XWFLFHSZA6IDXNBRNR6MFHSZOFKPPDDV7OEC5D2GE\",\n            \"comment\": \"Alta salida con amigos\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5008/feeds",
+							"host": [
+								"localhost"
+							],
+							"port": "5008",
+							"path": [
+								"feeds"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:5008/feeds/1",
-					"host": [
-						"localhost"
-					],
-					"port": "5008",
-					"path": [
-						"feeds",
-						"1"
-					]
+				{
+					"name": "Update feed",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"activities\": [\n        {\n            \"activityId\": \"5\",\n            \"date\": \"20/06/2021\",\n            \"type\": \"run\"\n        }, {\n            \"activityId\": \"2\",\n            \"date\": \"12/06/2021\",\n            \"type\": \"run\"\n        }, {\n            \"activityId\": \"1\",\n            \"date\": \"10/06/2021\",\n            \"type\": \"swim\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5008/feeds/1",
+							"host": [
+								"localhost"
+							],
+							"port": "5008",
+							"path": [
+								"feeds",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete feed",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5008/feeds/1",
+							"host": [
+								"localhost"
+							],
+							"port": "5008",
+							"path": [
+								"feeds",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Delete feed Copy",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "localhost:5008/feeds/1",
-					"host": [
-						"localhost"
-					],
-					"port": "5008",
-					"path": [
-						"feeds",
-						"1"
-					]
+			"name": "ACTIVITY",
+			"item": [
+				{
+					"name": "Create activity",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"activity_id\": \"763d9c77-d0ad-40d2-ad7d-23ea35fb98ed\",\n    \"type\" : \"photo\",\n    \"title\" : \"Vacations 2\",\n    \"user_id\" : \"c4da2d2e-422f-4b4f-9b6d-e44abb213c5c\",\n    \"photo_url\": \"url\",\n    \"photo_comment\": \"Vacations\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/activity",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"activity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create reaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"activityId\" : \"763d9c77-d0ad-40d2-ad7d-23ea35fb98ed\",\n    \"reactionUser\" : \"c4da2d2e-422f-4b4f-9b6d-e44abb213c5c\",\n    \"text\": \"Cool\",\n    \"isKudos\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/reaction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reaction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create sensor entry",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"activityId\" : \"763d9c77-d0ad-40d2-ad7d-23ea35fb98ed\",\n    \"sensorType\" : 2,\n    \"value\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/sensor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sensor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get activity by user id and type",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/activities/type?userId=c4da2d2e-422f-4b4f-9b6d-e44abb213c5c&type=photo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"activities",
+								"type"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "c4da2d2e-422f-4b4f-9b6d-e44abb213c5c"
+								},
+								{
+									"key": "type",
+									"value": "photo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get activity by user id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/activities?userId=c4da2d2e-422f-4b4f-9b6d-e44abb213c5c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"activities"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "c4da2d2e-422f-4b4f-9b6d-e44abb213c5c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get sensor entries by activity id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/sensor?activityId=763d9c77-d0ad-40d2-ad7d-23ea35fb98ed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sensor"
+							],
+							"query": [
+								{
+									"key": "activityId",
+									"value": "763d9c77-d0ad-40d2-ad7d-23ea35fb98ed"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get reactions by activity id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/reaction?activityId=763d9c77-d0ad-40d2-ad7d-23ea35fb98ed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reaction"
+							],
+							"query": [
+								{
+									"key": "activityId",
+									"value": "763d9c77-d0ad-40d2-ad7d-23ea35fb98ed"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }
