@@ -1,9 +1,12 @@
 const express = require ('express');
 const routes = require('./router'); 
+const controller = require('./controller')
 
 const app = express();
 
 app.use(express.json());
+
+controller.connect();
 
 app.use('/', routes); 
 

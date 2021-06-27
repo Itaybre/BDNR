@@ -1,0 +1,216 @@
+{
+	"info": {
+		"_postman_id": "72b30d15-99dc-4570-b2ec-a21799a5a2fc",
+		"name": "BDDNR",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/activity",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"activity_id\": \"763d9c77-d0ad-40d2-ad7d-23ea35fb98ed\",\n    \"type\" : \"photo\",\n    \"title\" : \"Vacations 2\",\n    \"user_id\" : \"c4da2d2e-422f-4b4f-9b6d-e44abb213c5c\",\n    \"photo_url\": \"url\",\n    \"photo_comment\": \"Vacations\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/activity",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"activity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/reaction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"activityId\" : \"763d9c77-d0ad-40d2-ad7d-23ea35fb98ed\",\n    \"reactionUser\" : \"c4da2d2e-422f-4b4f-9b6d-e44abb213c5c\",\n    \"text\": \"Cool\",\n    \"isKudos\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/reaction",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/sensor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"activityId\" : \"763d9c77-d0ad-40d2-ad7d-23ea35fb98ed\",\n    \"sensorType\" : 2,\n    \"value\": 5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/sensor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"sensor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/activities/type?userId=c4da2d2e-422f-4b4f-9b6d-e44abb213c5c&type=photo",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/activities/type?userId=c4da2d2e-422f-4b4f-9b6d-e44abb213c5c&type=photo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"activities",
+						"type"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "c4da2d2e-422f-4b4f-9b6d-e44abb213c5c"
+						},
+						{
+							"key": "type",
+							"value": "photo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/activities?userId=c4da2d2e-422f-4b4f-9b6d-e44abb213c5c",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/activities?userId=c4da2d2e-422f-4b4f-9b6d-e44abb213c5c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"activities"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "c4da2d2e-422f-4b4f-9b6d-e44abb213c5c"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/sensor?activityId=763d9c77-d0ad-40d2-ad7d-23ea35fb98ed",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/sensor?activityId=763d9c77-d0ad-40d2-ad7d-23ea35fb98ed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"sensor"
+					],
+					"query": [
+						{
+							"key": "activityId",
+							"value": "763d9c77-d0ad-40d2-ad7d-23ea35fb98ed"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/reaction?activityId=763d9c77-d0ad-40d2-ad7d-23ea35fb98ed",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/reaction?activityId=763d9c77-d0ad-40d2-ad7d-23ea35fb98ed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "activityId",
+							"value": "763d9c77-d0ad-40d2-ad7d-23ea35fb98ed"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

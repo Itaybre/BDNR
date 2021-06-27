@@ -1,5 +1,6 @@
 var models = require('express-cassandra');
 
+const connect = () => {
 models.setDirectory(__dirname + '/models').bind(
     {
         clientOptions: {
@@ -19,25 +20,30 @@ models.setDirectory(__dirname + '/models').bind(
     },
     function(err) {
         if(err) throw err;
-    }
+    },
+    console.log('Connected')
 );
+}
 
 const addActiviy = (req, res, next) => {
+    var toInsert = req.body
     var activity = new models.instance.Activity({
-        type : "other",
-        title : "text",
-        user_id     : 2,
+        activity_id: models.uuidFromString(toInsert.activity_id),
+        type : toInsert.type,
+        title : toInsert.title,
+        user_id : models.uuidFromString(toInsert.user_id),
         date : Date.now(),
-            photo_url: "text",
-            photo_comment: "text"
+        photo_url: toInsert.photo_url,
+        photo_comment: toInsert.photo_comment
     });
     var activiyByType = new models.instance.ActivityByType({
-        type : "text",
-        title : "text",
-        user_id     : 2,
+        activity_id: models.uuidFromString(toInsert.activity_id),
+        type : toInsert.type,
+        title : toInsert.title,
+        user_id : models.uuidFromString(toInsert.user_id),
         date : Date.now(),
-            photo_url: "text",
-            photo_comment: "text"
+        photo_url: toInsert.photo_url,
+        photo_comment: toInsert.photo_comment
     });
 
     activity.save(function(err){
@@ -53,7 +59,7 @@ const addActiviy = (req, res, next) => {
             return;
         }
         console.log('save 2')
-        res.json({message: "POST new activity 2"}); 
+        res.json({message: "Saved activity"}); 
     });
     
 }
@@ -61,7 +67,7 @@ const addActiviy = (req, res, next) => {
 const getActivities = (req, res, next)  => {
 
     var userId = req.query.userId
-    userId = parseInt(userId)
+    userId = models.uuidFromString(userId)
 
     models.instance.Activity.find({user_id: userId}, function(err, activities){
         if(err) {
@@ -75,10 +81,10 @@ const getActivities = (req, res, next)  => {
 const getActivitiesByType = (req, res, next)  => {
 
     var userId = req.query.userId
+    userId = models.uuidFromString(userId)
     var type = req.query.type
-    userId = parseInt(userId)
 
-    models.instance.ActivityByType.find({user_id: userId}, function(err, activities){
+    models.instance.ActivityByType.find({user_id: userId, type: type}, function(err, activities){
         if(err) {
             console.log(err);
             return;
@@ -87,5 +93,69 @@ const getActivitiesByType = (req, res, next)  => {
     });
 }
 
+const addReaction = (req, res, next) => {
+    var toInsert = req.body
+    var reaction = new models.instance.Reaction({
+        activityId : models.uuidFromString(toInsert.activityId),
+        reactionUser : models.uuidFromString(toInsert.reactionUser),
+        text: toInsert.text,
+        isKudos: toInsert.isKudos,
+        date: Date.now()
+    });
 
-module.exports = { addActiviy, getActivities, getActivitiesByType };
+    reaction.save(function(err){
+        if(err) {
+            console.log(err);
+            return;
+        }
+        console.log("reaction saved")
+        res.json({message : "reaction saved"})
+    });
+}
+
+const getReactions = (req, res, next) => {
+    var activityId = req.query.activityId
+    activityId =  models.uuidFromString(activityId)
+
+    models.instance.Reaction.find({activityId: activityId}, function(err, reactions){
+        if(err) {
+            console.log(err);
+            return;
+        }
+        res.json({collection: reactions})
+    });
+}
+
+const addGPSInfo = (req, res, next) => {
+    var toInsert = req.body
+    var gps = new models.instance.Sensor({
+        activityId : models.uuidFromString(toInsert.activityId),
+        sensorType : toInsert.sensorType,
+        value: toInsert.value,
+        date: Date.now()
+    });
+
+    gps.save(function(err){
+        if(err) {
+            console.log(err);
+            return;
+        }
+        console.log("gps saved")
+        res.json({message : "gps saved"})
+    });
+}
+
+const getGPSInfo = (req, res, next) => {
+    var activityId = req.query.activityId
+    activityId = models.uuidFromString(activityId),
+    models.instance.Sensor.find({activityId: activityId}, function(err, GPSs){
+        if(err) {
+            console.log(err);
+            return;
+        }
+        res.json({collection: GPSs})
+    });
+}
+
+
+module.exports = { connect, addActiviy, getActivities, getActivitiesByType, getReactions, addReaction, getGPSInfo, addGPSInfo};

@@ -3,7 +3,8 @@ module.exports = {
         activityId : "uuid",
         reactionUser : "uuid",
         text: "text",
-        isKudos: "boolean"
+        isKudos: "boolean",
+        date: "timestamp"
     },
-    key:["activityId", "isKudos"]
+    key:["activityId", "date"]
 }

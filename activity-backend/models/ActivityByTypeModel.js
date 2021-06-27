@@ -1,8 +1,9 @@
 module.exports = {
     fields:{
+        activityId: "uuid",
         type : "text",
         title : "text",
-        user_id : "int",
+        user_id : "uuid",
         date : "timestamp",
         photo_url: "text",
         photo_comment: "text",
@@ -17,5 +18,6 @@ module.exports = {
         cadence: "text",
         calories: "int"
     },
-    key:["user_id", "type"]
+    key:[["user_id", "type"], "date"],
+    clustering_order: {"date": "desc"}
 }
