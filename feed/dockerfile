@@ -1,6 +1,0 @@
-FROM node:14-alpine
-
-WORKDIR /usr/feed
-COPY package.json .
-RUN npm install
-COPY . .

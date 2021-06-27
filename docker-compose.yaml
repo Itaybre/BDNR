@@ -1,24 +1,32 @@
 version: "3.9" # optional since v1.27.0
 services:
-  feed:
-    build: ./feed
-    command: npm start
-    ports:
-      - "5008:5008"
+  feed-backend:
+    container_name: feed-backend
+    build: ./feed-backend
     volumes:
-      - ./feed:/usr/feed
-      - /usr/feed/node_modules
+      - "./:/feed-backend"
+      - "/feed-backend/node_modules"
+    ports:
+      - 5008:5008
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: npm start
     depends_on:
       - redis
-  feed-ui:
+  feed-web:
+    container_name: feed-web
     build: ./feed-web
-    command: npm start
-    ports:
-      - "3000:3000"
     volumes:
-      - ./feed-web:/usr/feed-web
-      - /usr/feed-web/node_modules
+      - "./:/feed-web"
+      - "/feed-web/node_modules"
+    ports:
+      - 3000:3000
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: yarn start
     depends_on:
-      - feed
+      - feed-backend
   redis:
     image: redis
