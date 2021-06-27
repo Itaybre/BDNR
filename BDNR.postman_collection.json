@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4b23e529-2099-4920-ab38-1276fc197cf2",
+		"_postman_id": "3fd7e2bd-dc83-4f6a-a899-c391443a2377",
 		"name": "BDNR",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -31,7 +31,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"userId\": \"1\",\n    \"activities\": [\n        {\n            \"activityId\": \"2\",\n            \"date\": \"12/06/2021\",\n            \"type\": \"run\"\n        }, {\n            \"activityId\": \"1\",\n            \"date\": \"10/06/2021\",\n            \"type\": \"swim\"\n        }\n    ]\n}",
+					"raw": "{\n    \"userId\": \"3\",\n    \"activities\": [\n        {\n            \"activityId\": \"1\",\n            \"title\": \"Salida en bici por la mañana\",\n            \"userName\": \"Mateo Kruk\",\n            \"userLogo\": \"https://ca.slack-edge.com/TAJT09G57-UP1A7QSPR-7311acb381c4-512\",\n            \"date\": \"12/06/2021\",\n            \"activityType\": \"run\",\n            \"imageUrl\": \"https://d3o5xota0a1fcr.cloudfront.net/v6/maps/WQXZXCZEKL7SZVFPCME72NT7VX3GGCEB6ZBW5WV5K2EXPSBDXURSXX7XWFLFHSZA6IDXNBRNR6MFHSZOFKPPDDV7OEC5D2GE\",\n            \"comment\": \"Alta salida con amigos\"\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
